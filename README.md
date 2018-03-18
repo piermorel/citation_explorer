@@ -1,6 +1,6 @@
 # citation_explorer
 
-This Matlab function uses Europe PubMed Central [RESTful web service](https://europepmc.org/RestfulWebService#sort) to extract references or citations from a given "seed" paper and recursively find reference/citations within those. The relevant papers at each level can be crudely assessed by counting how many times they appear.
+This Matlab function uses Europe PubMed Central's [RESTful web service](https://europepmc.org/RestfulWebService#sort) to extract references or citations from a given "seed" paper and recursively find reference/citations within those. The relevant papers at each level can be crudely assessed by counting how many times they appear.
 
 ## Usage 
 
@@ -8,36 +8,41 @@ This Matlab function uses Europe PubMed Central [RESTful web service](https://eu
  
  Other arguments use name-value pairs and are :
  
-   - 'searchtype': Cell of strings, default is {'reference' 'citation'}.
+   - ```'searchtype'```: Cell of strings, default is ```{'reference' 'citation'}```.
    This input is used to indicate the search direction at each level of
    the recursion. Use 'reference' to search the references in all
    papers at a given level. Use 'citation' to search which papers cited
-   each of the papers extracted at the previous level. The first element indicates the search
+   each of the papers at a given level. The first element indicates the search
    done on the initial seed paper. The default value thus searches all
    references in the initial paper, and then all the articles citing each
-   of the references. This combination is useful to search for relevant
+   of these references. This combination is useful to search for relevant
    recent papers on the same topic. Only two levels are recommended for
    most cases: 3 levels leads to a very large amount of searches as there
    are no optimizations yet.
    
-   - 'disp': Integer, default is 30. This parameter indicates how many of
-   the found papers at the final level should be displayed, ordered in
-   descending order of number of appearances in the level. The output is
-   in the for n_appearances | n_citations | Author (year) title. With the
+   - ```'disp'```: Integer, default is 30. This parameter indicates how many of
+   the found papers at the last level should be displayed, ordered in
+   descending order of number of appearances in the level. With the
    default 'searchtype', the first paper in the list should be the
    original paper.
+   
+   
+The function returns a table containing metadata about all the retrieved
+papers. The field ```link_id```` stores the ID of the paper that linked to the paper, which 
+could be useful for constructing graphs afterwards. The field ```level``` indicates at
+which level of the recursion the paper was retrieved.
    
 ## Example
 
 ```matlab
 out = citation_explorer('What makes a reach movement effortful',...
-%    'searchtype',{'reference' 'citation'},...
-%    'disp',30);
+    'searchtype',{'reference' 'citation'},...
+    'disp',30);
 ```
 
 Output (these are papers that cite the same papers cited by the seed article):
 
-| Appearences  | n citations | Paper info |
+| N_appearences  | N_citations | Paper info |
 | --- | --- | --- |
 | 28 | 3 | Morel P, Ulbrich P, Gail A. (2017) What makes a reach movement effortful? Physical effort discounting supports common minimization principles in decision making and motor control. | 
 | 11 | 11 | Shadmehr R, Huang HJ, Ahmed AA. (2016) A Representation of Effort in Decision-Making and Motor Control. | 
