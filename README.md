@@ -8,7 +8,7 @@ This Matlab function uses Europe PubMed Central's [RESTful web service](https://
  
  Other arguments use name-value pairs and are :
  
-   - ```'searchtype'```: Cell of strings, default is ```{'reference' 'citation'}```.
+   - `'searchtype'`: Cell of strings, default is `{'reference' 'citation'}`.
    This input is used to indicate the search direction at each level of
    the recursion. Use 'reference' to search the references in all
    papers at a given level. Use 'citation' to search which papers cited
@@ -20,7 +20,7 @@ This Matlab function uses Europe PubMed Central's [RESTful web service](https://
    most cases: 3 levels leads to a very large amount of searches as there
    are no optimizations yet.
    
-   - ```'disp'```: Integer, default is 30. This parameter indicates how many of
+   - `'disp'`: Integer, default is 30. This parameter indicates how many of
    the found papers at the last level should be displayed, ordered in
    descending order of number of appearances in the level. With the
    default 'searchtype', the first paper in the list should be the
@@ -28,8 +28,8 @@ This Matlab function uses Europe PubMed Central's [RESTful web service](https://
    
    
 The function returns a table containing metadata about all the retrieved
-papers. The field ```link_id``` stores the ID of the paper that linked to the paper, which 
-could be useful for constructing graphs afterwards. The field ```level``` indicates at
+papers. The field `link_id` stores the ID of the paper that linked to the paper, which 
+could be useful for constructing graphs afterwards. The field `level` indicates at
 which level of the recursion the paper was retrieved.
    
 ## Example
