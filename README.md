@@ -28,7 +28,7 @@ This Matlab function uses Europe PubMed Central's [RESTful web service](https://
    
    
 The function returns a table containing metadata about all the retrieved
-papers. The field ```link_id```` stores the ID of the paper that linked to the paper, which 
+papers. The field ```link_id``` stores the ID of the paper that linked to the paper, which 
 could be useful for constructing graphs afterwards. The field ```level``` indicates at
 which level of the recursion the paper was retrieved.
    
@@ -40,7 +40,7 @@ out = citation_explorer('What makes a reach movement effortful',...
     'disp',30);
 ```
 
-Output (these are papers that cite the same papers cited by the seed article):
+Command-line output (these are papers that cite the same papers cited by the seed article):
 
 | N_appearences  | N_citations | Paper info |
 | --- | --- | --- |
